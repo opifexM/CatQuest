@@ -82,7 +82,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>embeddedTomcatSample</finalName>
+        <finalName>CatQuestEmbeddedTomcat</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
