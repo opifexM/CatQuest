@@ -1,1 +1,1 @@
-web: java -jar target/CatQuest-1.0-SNAPSHOT.jar
+web: java -jar /tmp/codon/tmp/cache/.m2/repository/com/javarush/maximov/CatQuest/1.0-SNAPSHOT/CatQuest-1.0-SNAPSHOT.jar
