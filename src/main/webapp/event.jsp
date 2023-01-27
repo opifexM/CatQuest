@@ -45,7 +45,7 @@
             <img src="<c:url value="/pic/basic_7.jpg"/>" class="img-fluid rounded" width="500" height="600" alt="">
             <p></p>
             <p>You have approached the cave <b>wall</b>.</p>
-            <p>You try to move the wall, but you fail.</p>
+            <p>You try to move the wall, but failed.</p>
             Try to find a workaround.
             <p></p>
         </c:when>

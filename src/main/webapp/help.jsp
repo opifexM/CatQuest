@@ -29,7 +29,7 @@
         </li>
         <li>
             <input formmethod="post" type="submit" value="?" class="btn btn-secondary"/>
-            - Walls restrict movement in the cave.
+            - Walls restrict movements in the cave.
         </li>
         <li>
             <input formmethod="post" type="submit" value="?" class="btn btn-light"/>
