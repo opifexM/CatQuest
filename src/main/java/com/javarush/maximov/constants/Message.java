@@ -12,7 +12,6 @@ public final class Message {
     public static final String ADMIN_OFF = "Admin access disabled.";
     public static final String ADMIN_ON = "Admin access enabled.";
 
-
     private Message() {
     }
 }

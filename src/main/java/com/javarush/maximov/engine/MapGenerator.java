@@ -202,7 +202,7 @@ public class MapGenerator {
                 cell.setGenerationWallLevel(currentWallLevel + 1);
             }
         } else {
-            log.info("Exit cell is not found. No way for map!");
+            log.info("Exit cell is not found. No exit way for current map!");
             return false;
         }
         return searchPath(cellMap, moveX, moveY, currentWallLevel);
