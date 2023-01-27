@@ -1,1 +1,1 @@
-web: java -jar target/CatQuestEmbeddedTomcat.jar
+web: java -jar target/CatQuestEmbeddedTomcat-jar-with-dependencies.jar
