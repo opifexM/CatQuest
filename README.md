@@ -1,4 +1,4 @@
-[![Maintainability](https://api.codeclimate.com/v1/badges/a7814283eca1044be3e7/maintainability)](https://codeclimate.com/github/opifexM/java-project-72/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7849196a1b5d443646f3/maintainability)](https://codeclimate.com/github/opifexM/CatQuest/maintainability)
 
 Web link: 
 
