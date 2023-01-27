@@ -1,0 +1,1 @@
+web: java -jar target/CatQuest-1.0-SNAPSHOT.jar
