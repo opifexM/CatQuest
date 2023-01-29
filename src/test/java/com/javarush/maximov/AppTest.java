@@ -7,17 +7,18 @@ import kong.unirest.Cookie;
 import kong.unirest.Cookies;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static com.javarush.maximov.App.getApp;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -88,6 +89,7 @@ class AppTest {
     }
 
     @Test
+    @Order(1)
     void testGameServlet_FirstTurn() {
         HttpResponse<String> responsePost = Unirest
                 .post(baseUrl + "/menu/new")
@@ -128,6 +130,34 @@ class AppTest {
         content = response.getBody();
         assertThat(response.getStatus()).isEqualTo(200);
         assertThat(content).contains("Try to look for cave areas that have not yet been discovered");
+    }
+
+    @Order(2)
+    @ParameterizedTest
+    @ValueSource(strings = {"Second round", "Third round", "Fourth round", "Fifth round"})
+    void testGameServlet_NextTurn() {
+        Game game = App.getGame(sessionId);
+        int turn = game.getTurn();
+        List<Cell> cellAvailableList = game.getCellList().values().stream()
+                .filter(cell -> cell.getLandType() != LandType.WALL)
+                .filter(Cell::isAvailable)
+                .toList();
+
+        for (Cell cell : cellAvailableList) {
+            HttpResponse<String> responsePost = Unirest
+                    .post(baseUrl + "/game/action?id=" + cell.getId())
+                    .asString();
+            assertThat(responsePost.getStatus()).isEqualTo(302);
+            assertThat(responsePost.getHeaders().getFirst("Location")).isEqualTo("/game");
+            turn++;
+        }
+
+        HttpResponse<String> response = Unirest
+                .get(baseUrl + "/game")
+                .asString();
+        String content = response.getBody();
+        assertThat(response.getStatus()).isEqualTo(200);
+        assertThat(content).contains("<b>" + (turn) + "</b>");
     }
 
     @Test
