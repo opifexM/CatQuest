@@ -22,3 +22,5 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
           JACOCO_SOURCE_PATH: ${{github.workspace}}/target/site/jacoco/jacoco.xml:jacoco
+        with:
+          coverageCommand: jacoco
