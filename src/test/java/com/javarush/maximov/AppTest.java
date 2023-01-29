@@ -145,6 +145,12 @@ class AppTest {
 
         for (Cell cell : cellAvailableList) {
             HttpResponse<String> responsePost = Unirest
+                    .post(baseUrl + "/game/move?id=" + cell.getId())
+                    .asString();
+            assertThat(responsePost.getStatus()).isEqualTo(302);
+            assertThat(responsePost.getHeaders().getFirst("Location")).isEqualTo("/game");
+
+            responsePost = Unirest
                     .post(baseUrl + "/game/action?id=" + cell.getId())
                     .asString();
             assertThat(responsePost.getStatus()).isEqualTo(302);
