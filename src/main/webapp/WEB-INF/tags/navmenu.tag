@@ -27,9 +27,11 @@
                             <input formaction="/menu/new" formmethod="post" type="submit" value="Generate map" class="btn btn-success btn-sm" />
                         </form>
                     </c:when>
-                    <c:otherwise>
-                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Admin</button>
-                    </c:otherwise>
+                    <c:when test="${game.isAdminAccess() == false}">
+                        <form>
+                            <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Admin</button>
+                        </form>
+                    </c:when>
                 </c:choose>
             </div>
         </div>

@@ -24,7 +24,7 @@ public class App {
     private static final Logger log = LoggerFactory.getLogger(App.class);
     private static final Map<String, Game> mapSessionGame = new HashMap<>();
 
-    private static int getPort() {
+    static int getPort() {
         log.info("Select port");
         String port = System.getenv("PORT");
         if (port != null) {
@@ -35,10 +35,10 @@ public class App {
 
     public static void main(String[] args) throws LifecycleException, SQLException, IOException {
         Connection dbConnection = dbConnectInit();
-        tomcatStart(dbConnection);
+        tomcatStart(dbConnection, getPort());
     }
 
-    private static Connection dbConnectInit() throws SQLException, IOException {
+    static Connection dbConnectInit() throws SQLException, IOException {
         log.info("Connect to SQL");
         Connection dbConnection = DriverManager.getConnection("jdbc:h2:./catquest");
         log.info("Create SQL statement");
@@ -48,12 +48,11 @@ public class App {
             statement.execute(initSql);
         }
         return dbConnection;
-
     }
 
-    private static void tomcatStart(Connection sqlConnection) throws LifecycleException {
+    static void tomcatStart(Connection sqlConnection, int port) throws LifecycleException {
         log.info("Tomcat start");
-        Tomcat app = getApp(getPort(), sqlConnection);
+        Tomcat app = getApp(port, sqlConnection);
         app.start();
         app.getServer().await();
     }

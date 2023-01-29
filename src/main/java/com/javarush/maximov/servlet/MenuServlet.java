@@ -132,13 +132,14 @@ public class MenuServlet extends HttpServlet {
     }
 
     private void adminAccess(HttpServletResponse response, Game game, HttpSession session) throws IOException {
+        if (isGameStart(game == null, session, response)) return;
         if (game.isAdminAccess()) {
-            log.info("Admin Access set to FALSE.");
+            log.info("Admin Access is ON.");
             game.setAdminAccess(false);
             session.setAttribute(Attribute.FLASH, Message.ADMIN_OFF);
             session.setAttribute(Attribute.FLASHTYPE, Attribute.ALERT_INFO);
         } else {
-            log.info("Admin Access set to TRUE.");
+            log.info("Admin Access is OFF.");
             game.setAdminAccess(true);
             session.setAttribute(Attribute.FLASH, Message.ADMIN_ON);
             session.setAttribute(Attribute.FLASHTYPE, Attribute.ALERT_INFO);
