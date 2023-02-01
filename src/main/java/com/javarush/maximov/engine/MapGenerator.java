@@ -171,11 +171,8 @@ public class MapGenerator {
 
 
     public boolean searchPath(Map<Integer, Cell> cellMap, int x, int y, int currentWallLevel) {
-        log.info("Searching for map pathway");
-
         int moveX;
         int moveY;
-
         List<Cell> cellAvailabilityList = new ArrayList<>();
         addToCellPathList(cellMap, x, y + 1, currentWallLevel, cellAvailabilityList);
         addToCellPathList(cellMap, x, y - 1, currentWallLevel, cellAvailabilityList);
@@ -202,7 +199,6 @@ public class MapGenerator {
                 cell.setGenerationWallLevel(currentWallLevel + 1);
             }
         } else {
-            log.info("Exit cell is not found. No exit way for current map!");
             return false;
         }
         return searchPath(cellMap, moveX, moveY, currentWallLevel);

@@ -4,6 +4,7 @@ tmp/
 *.tmp
 *.bak
 *.swp
+*.log
 *~.nib
 .classpath
 .settings/
